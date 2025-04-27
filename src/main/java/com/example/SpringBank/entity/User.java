@@ -1,5 +1,6 @@
 package com.example.SpringBank.entity;
 
+import com.example.SpringBank.entity.common.FullName;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +16,9 @@ public abstract class User {
 
     protected String username;
     protected String passwordHash;
+    @Embedded
+    protected FullName fullName;
+
     // Timestamps
     @CreationTimestamp
     protected LocalDateTime createdAt;

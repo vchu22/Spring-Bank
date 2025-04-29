@@ -1,8 +1,8 @@
 package com.example.SpringBank.entity;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import static com.example.SpringBank.Helpers.checkClassHasField;
+
+import static com.example.SpringBank.Helpers.*;
 
 @SpringBootTest
 public class UserTests {
@@ -10,5 +10,10 @@ public class UserTests {
     void hasLoginCredentials() {
         checkClassHasField(User.class, "username", String.class);
         checkClassHasField(User.class, "passwordHash", String.class);
+    }
+
+    @Test
+    void userClassIsAbstract() {
+        checkClassIsAbstract(User.class);
     }
 }

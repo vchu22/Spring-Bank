@@ -8,12 +8,16 @@ import lombok.Builder;
 @Table(name = "employee")
 public class Employee extends User {
     private String empId;
-    private String department;
+
+    // Enum declarations
     @Enumerated(EnumType.STRING)
-    protected Role role;
+    private Department department;
+    public enum Department {
+        IT, CUSTOMER_SERVICE, OPERATIONS, RISK_MANAGEMENT, LEGAL, ACCOUNT_MANAGEMENT, LOAN
+    }
+    @Enumerated(EnumType.STRING)
+    private Role role;
     public enum Role {
-        TELLER,
-        MANAGER,
-        ACCOUNTANT
+        TELLER, MANAGER, ACCOUNTANT
     }
 }

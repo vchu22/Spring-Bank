@@ -1,8 +1,12 @@
 package com.example.SpringBank.entity;
+import static com.example.SpringBank.common.Helpers.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.LocalDateTime;
+
+// Imports for tests
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static com.example.SpringBank.Helpers.*;
 
 @SpringBootTest
 public class UserTests {
@@ -24,5 +28,18 @@ public class UserTests {
     @Test
     void userClassIsAbstract() {
         checkClassIsAbstract(User.class);
+    }
+
+    /**
+     * Check if User class has time stamps.
+     * @result Test will pass if User class contains <code>createdAt</code> and <code>modifiedAt</code>. Otherwise, the
+     *          test will fail.
+     */
+    @Test
+    void hasCreatedAndModifiedTimestamps() throws NoSuchFieldException {
+        checkClassHasField(User.class, "createdAt", LocalDateTime.class);
+        checkClassHasField(User.class, "modifiedAt", LocalDateTime.class);
+        checkFieldHasAnnotation(User.class, "createdAt", CreationTimestamp.class);
+        checkFieldHasAnnotation(User.class, "modifiedAt", UpdateTimestamp.class);
     }
 }

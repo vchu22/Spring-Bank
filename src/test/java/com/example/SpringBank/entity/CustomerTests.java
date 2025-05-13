@@ -2,6 +2,7 @@ package com.example.SpringBank.entity;
 import com.example.SpringBank.entity.common.*;
 import static com.example.SpringBank.common.Helpers.checkClassHasField;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Date;
 
 // Imports for tests
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,15 @@ public class CustomerTests {
         checkClassHasField(ContactInfo.class, "email", String.class);
         checkClassHasField(ContactInfo.class, "phoneNumber", String.class);
         checkClassHasField(ContactInfo.class, "secondaryPhoneNumber", String.class);
+    }
+
+    /**
+     * Ensures the Customer entity class a field for date of birth.
+     * @result Test will pass if Customer class contains a Date field <code>dateOfBirth</code>. Otherwise, the test will fail.
+     */
+    @Test
+    void hasDateOfBirthField() {
+        checkClassHasField(Customer.class, "dateOfBirth", Date.class);
     }
 
     /**

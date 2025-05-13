@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class CustomerTests {
     /**
-     * Check if <code>Customer</code> is a subclass of <code>User</code>
+     * Ensures <code>Customer</code> is a subclass of <code>User</code>.
      * @result Pass if <code>Customer</code> is inherited from <code>User</code>, else the test will fail.
      */
     @Test
@@ -20,9 +20,9 @@ public class CustomerTests {
     }
 
     /**
-     * Ensures the Customer entity class has the fields for address.
-     * @result Test will pass if Customer class contains the field for address with the correct types. Otherwise, the
-     *          test will fail.
+     * Ensures the <code>Customer</code> entity class has the fields for address.
+     * @result Test will pass if <code>Customer</code> contains the fields for address with the correct data types.
+     *          Otherwise, the test will fail.
      */
     @Test
     void hasAddressFields() {
@@ -36,9 +36,9 @@ public class CustomerTests {
     }
 
     /**
-     * Ensures the Customer entity class has the fields for contact info.
-     * @result Test will pass if Customer class contains the field for contact info with the correct types. Otherwise,
-     *          the test will fail.
+     * Ensures the <code>Customer</code> entity class has the fields for contact info.
+     * @result Test will pass if <code>Customer</code> contains the fields for contact info with the correct types.
+     *          Otherwise, the test will fail.
      */
     @Test
     void hasContactInfoFields() {
@@ -49,8 +49,9 @@ public class CustomerTests {
     }
 
     /**
-     * Ensures the Customer entity class a field for date of birth.
-     * @result Test will pass if Customer class contains a Date field <code>dateOfBirth</code>. Otherwise, the test will fail.
+     * Ensures the <code>Customer</code> entity class has a field for date of birth.
+     * @result Test will pass if <code>Customer</code> contains a Date field <code>dateOfBirth</code>. Otherwise, the
+     *          test will fail.
      */
     @Test
     void hasDateOfBirthField() {
@@ -58,8 +59,9 @@ public class CustomerTests {
     }
 
     /**
-     * Ensures the Customer entity class has a boolean field indicating if the customer is deceased.
-     * @result Test will pass if Customer class contains boolean <code>isDeceased</code>. Otherwise, the test will fail.
+     * Ensures the <code>Customer</code> entity class has a boolean field indicating if the customer is deceased.
+     * @result Test will pass if <code>Customer</code> contains a boolean <code>isDeceased</code>. Otherwise, the test
+     *          will fail.
      */
     @Test
     void hasIsDeceasedField() {

@@ -11,9 +11,9 @@ import static com.example.SpringBank.common.Helpers.checkFieldHasAnnotation;
 @SpringBootTest
 public class AccountTests {
     /**
-     * Ensures the Account entity class has the fields necessary for account operations.
-     * @result Test will pass if Account class contains the field necessary for account operations. Otherwise, the
-     *          test will fail.
+     * Ensures the <code>Account</code> entity class has the fields necessary for account operations.
+     * @result Test will pass if <code>Account</code> contains the field necessary for account operations. Otherwise,
+     *          the test will fail.
      */
     @Test
     void hasAccountFields() {
@@ -24,11 +24,12 @@ public class AccountTests {
     }
 
     /**
-     * Check if Account class has time stamps.
-     * @result Test will pass if Account class contains <code>createdAt</code> timestamp. Otherwise, the test will fail.
+     * Ensures the <code>Account</code> class has a time stamp for the time of creation.
+     * @result Test will pass if <code>Account</code> contains <code>createdAt</code> timestamp. Otherwise, the test
+     *          will fail.
      */
     @Test
-    void hasCreatedTimestamps() throws NoSuchFieldException {
+    void hasCreatedTimestamp() throws NoSuchFieldException {
         checkClassHasField(Account.class, "createdAt", LocalDateTime.class);
         checkFieldHasAnnotation(Account.class, "createdAt", CreationTimestamp.class);
     }

@@ -1,5 +1,7 @@
 package com.example.SpringBank.common;
 
+import jakarta.persistence.*;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -8,9 +10,12 @@ import java.util.Set;
 
 // Imports for tests
 import static org.assertj.core.api.Fail.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Helpers {
+    public enum AssociationMappingType {
+        ONE_TO_ONE, ONE_TO_MANY, MANY_TO_ONE, MANY_TO_MANY
+    }
     /**
      * Check if a class is an abstract class.
      * @param checkedClass The class to check whether it is abstract
@@ -39,6 +44,32 @@ public class Helpers {
         }
     }
 
+    /**
+     * Check if a field of an entity is a foreign key to another table.
+     * @param checkedClass The class that contains to specific field to be checked
+     * @param fieldName The name of the field to be checked
+     * @param referencedEntity The entity that <code>checkedClass.fieldName</code> points to
+     * @param referencedColumn The field that <code>checkedClass.fieldName</code> points to
+     * @param association The type of association between <code>checkedClass</code> and <code>referencedEntity</code>
+     */
+    public static void isForeignKey(Class<?> checkedClass, String fieldName, Class<?> referencedEntity, String referencedColumn,
+                                    AssociationMappingType association) throws NoSuchFieldException {
+        Field field = checkedClass.getDeclaredField(fieldName);
+        assertEquals(referencedEntity, field.getType(), String.format("'%s.%s' should be type '%s'", checkedClass, fieldName, referencedEntity));
+        // Check for @ManyToOne
+        switch (association) {
+            case ONE_TO_ONE -> assertTrue(field.isAnnotationPresent(OneToOne.class), "@OneToOne annotation should be present");
+            case ONE_TO_MANY -> assertTrue(field.isAnnotationPresent(OneToMany.class), "@OneToMany annotation should be present");
+            case MANY_TO_ONE -> assertTrue(field.isAnnotationPresent(ManyToOne.class), "@ManyToOne annotation should be present");
+            case MANY_TO_MANY -> assertTrue(field.isAnnotationPresent(ManyToMany.class), "@ManyToMany annotation should be present");
+        }
+
+        // Check @JoinColumn details
+        JoinColumn joinColumn = field.getAnnotation(JoinColumn.class);
+        assertNotNull(joinColumn, "@JoinColumn should be present");
+        assertEquals(fieldName, joinColumn.name(), String.format("Join column name should be '%s'", fieldName));
+        assertEquals(referencedColumn, joinColumn.referencedColumnName(), String.format("Referenced column should be '%s'", referencedColumn));
+    }
     /**
      * Check if a class has a specific enum with the specified values.
      *

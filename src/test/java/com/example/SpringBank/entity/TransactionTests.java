@@ -29,12 +29,21 @@ public class TransactionTests {
      */
     @Test
     void hasTransactionFields() {
-        checkClassHasField(Transaction.class, "accountId", UUID.class);
         checkClassHasField(Transaction.class, "transactionType", Transaction.TransactionType.class);
         checkClassHasField(Transaction.class, "amount", float.class);
         checkClassHasField(Transaction.class, "balanceAfterTransaction", float.class);
         checkClassHasField(Transaction.class, "status", Transaction.Status.class);
         checkClassHasField(Transaction.class, "description", String.class);
+    }
+
+    /**
+     * Ensures the <code>accountId</code> is a foreign key pointing to the <code>Account</code> table.
+     * @result Test will pass if <code>accountId</code> is a foreign key pointing to the <code>Account</code> table.
+     *          Otherwise, the test will fail.
+     */
+    @Test
+    void accountIdIsForeignKey() throws NoSuchFieldException {
+        isForeignKey(Transaction.class, "accountId", Account.class, "id", AssociationMappingType.MANY_TO_ONE);
     }
 
     /**

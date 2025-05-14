@@ -5,11 +5,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 
-import static com.example.SpringBank.common.Helpers.checkClassHasField;
-import static com.example.SpringBank.common.Helpers.checkFieldHasAnnotation;
+import static com.example.SpringBank.common.Helpers.*;
 
 @SpringBootTest
 public class AccountTests {
+    /**
+     * Ensures <code>Account</code> has the enum <code>AccountType</code> with at least the Checking and Saving types.
+     * @result Pass if <code>AccountType</code> enums exist in <code>Account</code> entity, else the test will fail.
+     */
+    @Test
+    void hasAccountTypeEnum(){
+        checkClassHasEnum(Account.class, "AccountType",  new String[] { "CHECKING", "SAVING" });
+    }
+
     /**
      * Ensures the <code>Account</code> entity class has the fields necessary for account operations.
      * @result Test will pass if <code>Account</code> contains the field necessary for account operations. Otherwise,
@@ -18,7 +26,7 @@ public class AccountTests {
     @Test
     void hasAccountFields() {
         checkClassHasField(Account.class, "accountNumber", String.class);
-        checkClassHasField(Account.class, "accountType", String.class);
+        checkClassHasField(Account.class, "accountType", Account.AccountType.class);
         checkClassHasField(Account.class, "balance", float.class);
         checkClassHasField(Account.class, "closed", boolean.class);
     }

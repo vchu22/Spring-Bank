@@ -2,7 +2,9 @@ package com.example.SpringBank.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -17,4 +19,21 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected UUID id;
 
+    private UUID accountId;
+    @Enumerated(EnumType.STRING)
+    private TransactionType transactionType;
+    public enum TransactionType {
+        DEPOSIT, WITHDRAWAL, TRANSFER, INTEREST, BONUS
+    }
+    private float amount;
+    private float balanceAfterTransaction;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    public enum Status {
+        COMPLETED, PENDING, CANCELED
+    }
+    private String description;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

@@ -32,6 +32,16 @@ public class AccountTests {
     }
 
     /**
+     * Ensures <code>Account</code> has a foreign key pointing to the <code>Customer</code> entity.
+     * @result Test will pass if <code>Account</code> has a foreign key <code>customerId</code> pointing to the
+     *          <code>Customer</code> entity. Otherwise, the test will fail.
+     */
+    @Test
+    void hasForeignKeyToCustomer() throws NoSuchFieldException {
+        isForeignKey(Account.class, "customerId", Customer.class, "id", AssociationMappingType.MANY_TO_ONE);
+    }
+
+    /**
      * Ensures the <code>Account</code> class has a time stamp for the time of creation.
      * @result Test will pass if <code>Account</code> contains <code>createdAt</code> timestamp. Otherwise, the test
      *          will fail.

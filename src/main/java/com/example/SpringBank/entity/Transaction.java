@@ -19,7 +19,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected UUID id;
 
-    private UUID accountId;
+    @ManyToOne
+    @JoinColumn(name = "accountId", referencedColumnName = "id")
+    private Account accountId;
+
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
     public enum TransactionType {

@@ -19,7 +19,12 @@ public class Account {
     protected UUID id;
 
     private String accountNumber;
-    private String accountType;
+
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
+    public enum AccountType {
+        CHECKING, SAVING, CD, MONEY_MARKET
+    }
     private float balance;
     private boolean closed;
 

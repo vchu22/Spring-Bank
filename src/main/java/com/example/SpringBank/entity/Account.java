@@ -18,6 +18,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected UUID id;
 
+    @ManyToOne
+    @JoinColumn(name="customerId", referencedColumnName="id")
+    private Customer customerId;
+
     private String accountNumber;
 
     @Enumerated(EnumType.STRING)

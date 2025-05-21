@@ -1,10 +1,10 @@
 package com.example.SpringBank.entity;
 
-import com.example.SpringBank.common.Helpers;
+// imports for tests
 import org.junit.jupiter.api.Test;
-
-import static com.example.SpringBank.common.Helpers.checkClassHasField;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.example.SpringBank.common.Helpers;
+import static com.example.SpringBank.common.Helpers.checkClassHasField;
 
 public class EmployeeTests {
     /**

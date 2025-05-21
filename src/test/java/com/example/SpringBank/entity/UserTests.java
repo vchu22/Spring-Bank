@@ -1,5 +1,4 @@
 package com.example.SpringBank.entity;
-import static com.example.SpringBank.common.Helpers.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
@@ -7,6 +6,7 @@ import java.time.LocalDateTime;
 // Imports for tests
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import static com.example.SpringBank.common.Helpers.*;
 
 @SpringBootTest
 public class UserTests {

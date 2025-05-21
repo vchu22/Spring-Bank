@@ -1,12 +1,12 @@
 package com.example.SpringBank.entity;
 import com.example.SpringBank.entity.common.*;
-import static com.example.SpringBank.common.Helpers.checkClassHasField;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Date;
 
 // Imports for tests
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.example.SpringBank.common.Helpers.checkClassHasField;
 
 @SpringBootTest
 public class CustomerTests {

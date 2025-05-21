@@ -1,12 +1,10 @@
 package com.example.SpringBank.entity;
-
 import org.hibernate.annotations.CreationTimestamp;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import java.time.LocalDateTime;
-import java.util.UUID;
 
+// imports for tests
+import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
 import static com.example.SpringBank.common.Helpers.*;
 
 @SpringBootTest

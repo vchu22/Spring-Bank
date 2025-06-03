@@ -34,6 +34,15 @@ public class CardTests {
     }
 
     /**
+     * Ensures the <code>cardNumber</code> is a unique key.
+     * @result Test will pass if <code>accountId</code> is a unique key. Otherwise, the test will fail.
+     */
+    @Test
+    void cardNumberIsUnique() throws NoSuchFieldException {
+        isUniqueKey(Card.class, "cardNumber");
+    }
+
+    /**
      * Ensures the <code>accountId</code> is a foreign key pointing to the <code>Account</code> table.
      * @result Test will pass if <code>accountId</code> is a foreign key pointing to the <code>Account</code> table.
      *          Otherwise, the test will fail.

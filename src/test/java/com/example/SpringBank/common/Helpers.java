@@ -44,6 +44,32 @@ public class Helpers {
         }
     }
 
+    public static void isUniqueKey(Class<?> checkedClass, String fieldName) throws NoSuchFieldException {
+        // Get the field from the class by field name
+        Field field = checkedClass.getDeclaredField(fieldName);
+
+        // Get all annotations present on the field
+        Annotation[] fieldAnnotations = field.getAnnotations();
+        boolean hasAnnotation = false;
+
+        // Check if the field has the same annotation as the passed-in 'annotation' parameter
+        for (Annotation fieldAnnotation : fieldAnnotations) {
+            // Check if annotation is @Column
+            if (fieldAnnotation.annotationType().equals(Column.class)) {
+                hasAnnotation = true;
+                // check if unique is true
+                Column column = (Column) fieldAnnotation;  // Cast the annotation
+                assertTrue(column.unique(),"Field '" + fieldName + "' is not marked as unique.");
+                break;  // Annotation found, no need to continue
+            }
+        }
+
+        // Assert if annotation is not found
+        if (!hasAnnotation) {
+            throw new AssertionError("The field '" + fieldName + "' does not have a @Column annotation.");
+        }
+    }
+
     /**
      * Check if a field of an entity is a foreign key to another table.
      * @param checkedClass The class that contains to specific field to be checked
